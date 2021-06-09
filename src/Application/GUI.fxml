@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller">
+   <children>
+      <Canvas fx:id="canvas" height="500.0" layoutX="14.0" layoutY="31.0" width="500.0" />
+      <ComboBox fx:id="BoundaryConditions" layoutX="1051.0" layoutY="304.0" prefWidth="150.0" promptText="Boundary conditions">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Periodic" />
+            <String fx:value="Absorbent" />
+         </FXCollections>
+      </items>
+   </ComboBox>
+      <ComboBox fx:id="Zarodkowanie" layoutX="1194.0" layoutY="52.0" onAction="#Nucleation" prefWidth="150.0" promptText="Zarodkowanie">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Random" />
+            <String fx:value="Own Choice" />
+         </FXCollections>
+      </items>
+   </ComboBox>
+      <ComboBox fx:id="Neighborhood" layoutX="1208.0" layoutY="304.0" prefWidth="150.0" promptText="Sąsiedztwo">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Moore" />
+               <String fx:value="von Neumann" />
+               <String fx:value="Hexagonal Random" />
+               <String fx:value="Pentagonal Random" />
+               <String fx:value="Hexagonal left" />
+               <String fx:value="Hexagonal right" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Button fx:id="StartButton" layoutX="1313.0" layoutY="345.0" mnemonicParsing="false" onAction="#StartPressed" text="Start">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="ResetButton" layoutX="1301.0" layoutY="99.0" mnemonicParsing="false" onAction="#ResetPressed" prefHeight="25.0" prefWidth="47.0" text="Reset" />
+      <Button fx:id="RescaleButton" layoutX="1306.0" layoutY="408.0" mnemonicParsing="false" onAction="#RescalePressed" text="Rescale" />
+      <TextField fx:id="RescaleY" layoutX="1249.0" layoutY="408.0" prefHeight="25.0" prefWidth="41.0" />
+      <TextField fx:id="RescaleX" layoutX="1181.0" layoutY="408.0" prefHeight="25.0" prefWidth="41.0" />
+      <Text layoutX="1163.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X:" />
+      <Text layoutX="1231.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y:" />
+      <TextField fx:id="numberofelements" layoutX="1098.0" layoutY="99.0" prefHeight="25.0" prefWidth="41.0" />
+      <Text layoutX="977.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of elements" />
+      <Text layoutX="1146.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nucleation" />
+      <Text layoutX="1147.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cellular Automata" />
+      <Text layoutX="1229.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Canvas:" />
+      <Text layoutX="991.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter seed size:" />
+      <TextField fx:id="seedsize" layoutX="1085.0" layoutY="52.0" prefHeight="25.0" prefWidth="41.0" />
+      <Text layoutX="1032.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Homogenous" />
+      <Text layoutX="991.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of rows" />
+      <Text layoutX="991.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of elements in row" />
+      <TextField fx:id="numberofrows" layoutX="1086.0" layoutY="171.0" prefHeight="25.0" prefWidth="29.0" />
+      <TextField fx:id="elementsinrow" layoutX="1141.0" layoutY="196.0" prefHeight="25.0" prefWidth="29.0" />
+      <Text layoutX="1253.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="With radius" />
+      <TextField fx:id="radius" layoutX="1247.0" layoutY="163.0" prefHeight="25.0" prefWidth="57.0" />
+      <Text layoutX="1173.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter radius" />
+      <Button fx:id="nucleationwithradius" layoutX="1195.0" layoutY="196.0" mnemonicParsing="false" onAction="#nucleationwithradius" text="Start nucleation with radius" />
+      <Button fx:id="homogenousnucleation" layoutX="995.0" layoutY="231.0" mnemonicParsing="false" onAction="#homogenous_nucleation" text="Start homogenous nucleation" />
+      <Text layoutX="1214.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monte Carlo" />
+      <Text layoutX="1152.0" layoutY="496.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of iterations:" />
+      <ComboBox fx:id="MCboundaryconditions" layoutX="1051.0" layoutY="519.0" prefWidth="150.0" promptText="Boundary Conditions">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Periodic" />
+            <String fx:value="Absorbent" />
+         </FXCollections>
+      </items>
+   </ComboBox>
+      <ComboBox fx:id="MCneighborhood" layoutX="1215.0" layoutY="519.0" prefWidth="150.0" promptText="Neighborhood">
+      <items>
+      <FXCollections fx:factory="observableArrayList">
+         <String fx:value="Moore" />
+         <String fx:value="vonNeumann" />
+         <String fx:value="Hexagonal Random" />
+         <String fx:value="Pentagonal random" />
+         <String fx:value="Hexagonal Left" />
+         <String fx:value="Hexagonal Right" />
+      </FXCollections>
+   </items>
+   </ComboBox>
+      <Button fx:id="startMC" layoutX="1258.0" layoutY="561.0" mnemonicParsing="false" onAction="#Monte_Carlo" text="Start Monte Carlo" />
+      <TextField fx:id="kt" layoutX="1198.0" layoutY="561.0" prefHeight="25.0" prefWidth="40.0" />
+      <TextField fx:id="MCiterations" layoutX="1282.0" layoutY="479.0" prefHeight="25.0" prefWidth="86.0" />
+      <Text layoutX="1159.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kt:" />
+      <Button fx:id="showenergy" layoutX="1288.0" layoutY="597.0" mnemonicParsing="false" onAction="#showenergy" text="Show Energy" />
+      <Text layoutX="1238.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DRX" />
+      <Button fx:id="DRXbutton" layoutX="1299.0" layoutY="665.0" mnemonicParsing="false" onAction="#DRXpressed" text="Perform DRX" />
+      <Button layoutX="1281.0" layoutY="702.0" mnemonicParsing="false" text="Show dislocation" fx:id="dislocationbutton" onAction="#dislocationpressed" />
+   </children>
+</AnchorPane>
